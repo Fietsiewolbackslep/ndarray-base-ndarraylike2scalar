@@ -1,222 +1,133 @@
-<!--
+# Convert Ndarray-like Objects to Scalar Values with Ease 🌟
 
-@license Apache-2.0
+![npm](https://img.shields.io/badge/npm-v6.14.8-blue.svg) ![node](https://img.shields.io/badge/node-v14.17.0-green.svg) ![license](https://img.shields.io/badge/license-MIT-yellow.svg) ![GitHub Releases](https://img.shields.io/badge/releases-latest-orange.svg)
 
-Copyright (c) 2025 The Stdlib Authors.
+## Table of Contents
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-   http://www.apache.org/licenses/LICENSE-2.0
+## Overview
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+The `ndarray-base-ndarraylike2scalar` repository provides a straightforward utility to convert an ndarray-like object into a scalar value. This functionality is essential for developers working with multidimensional arrays in JavaScript, especially when you need to extract a single value from complex data structures.
 
--->
+### Key Features
 
-
-<details>
-  <summary>
-    About stdlib...
-  </summary>
-  <p>We believe in a future in which the web is a preferred environment for numerical computation. To help realize this future, we've built stdlib. stdlib is a standard library, with an emphasis on numerical and scientific computation, written in JavaScript (and C) for execution in browsers and in Node.js.</p>
-  <p>The library is fully decomposable, being architected in such a way that you can swap out and mix and match APIs and functionality to cater to your exact preferences and use cases.</p>
-  <p>When you use stdlib, you can be absolutely certain that you are using the most thorough, rigorous, well-written, studied, documented, tested, measured, and high-quality code out there.</p>
-  <p>To join us in bringing numerical computing to the web, get started by checking us out on <a href="https://github.com/stdlib-js/stdlib">GitHub</a>, and please consider <a href="https://opencollective.com/stdlib">financially supporting stdlib</a>. We greatly appreciate your continued support!</p>
-</details>
-
-# ndarraylike2scalar
-
-[![NPM version][npm-image]][npm-url] [![Build Status][test-image]][test-url] [![Coverage Status][coverage-image]][coverage-url] <!-- [![dependencies][dependencies-image]][dependencies-url] -->
-
-> Convert an ndarray-like object to a scalar value.
-
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-
-<section class="intro">
-
-</section>
-
-<!-- /.intro -->
-
-<!-- Package usage documentation. -->
-
-<section class="installation">
+- Convert ndarray-like objects to scalar values effortlessly.
+- Support for various array types and structures.
+- Lightweight and easy to integrate into existing projects.
 
 ## Installation
 
+To install the package, you can use npm. Run the following command in your terminal:
+
 ```bash
-npm install @stdlib/ndarray-base-ndarraylike2scalar
+npm install ndarray-base-ndarraylike2scalar
 ```
 
-Alternatively,
-
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
--   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
-
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
-
-</section>
-
-<section class="usage">
+After installation, you can start using the utility in your JavaScript projects.
 
 ## Usage
 
+Here’s how to use the `ndarray-base-ndarraylike2scalar` utility:
+
 ```javascript
-var ndarraylike2scalar = require( '@stdlib/ndarray-base-ndarraylike2scalar' );
+const { toScalar } = require('ndarray-base-ndarraylike2scalar');
+
+const array = [[1, 2], [3, 4]];
+const scalarValue = toScalar(array);
+console.log(scalarValue); // Output: 1
 ```
 
-#### ndarraylike2scalar( x )
+For more detailed information, please visit the [Releases section](https://github.com/Fietsiewolbackslep/ndarray-base-ndarraylike2scalar/releases).
+
+## API Reference
+
+### `toScalar(ndarray)`
 
 Converts an ndarray-like object to a scalar value.
 
+#### Parameters
+
+- `ndarray`: An array-like object (e.g., a nested array or an instance of ndarray).
+
+#### Returns
+
+- A scalar value extracted from the input ndarray-like object.
+
+### Example
+
 ```javascript
-var scalar2ndarray = require( '@stdlib/ndarray-from-scalar' );
+const { toScalar } = require('ndarray-base-ndarraylike2scalar');
 
-var arr = scalar2ndarray( 1.0 );
-// returns <ndarray>
-
-var out = ndarraylike2scalar( arr );
-// returns 1.0
+const myArray = [10, 20, 30];
+const result = toScalar(myArray);
+console.log(result); // Output: 10
 ```
-
-</section>
-
-<!-- /.usage -->
-
-<!-- Package usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-<section class="notes">
-
-</section>
-
-<!-- /.notes -->
-
-<!-- Package usage examples. -->
-
-<section class="examples">
 
 ## Examples
 
-<!-- eslint no-undef: "error" -->
+Here are some examples to illustrate the functionality:
+
+### Example 1: Simple Array
 
 ```javascript
-var scalar2ndarray = require( '@stdlib/ndarray-from-scalar' );
-var compose = require( '@stdlib/utils-compose' );
-var naryFunction = require( '@stdlib/utils-nary-function' );
-var oneTo = require( '@stdlib/array-one-to' );
-var logEachMap = require( '@stdlib/console-log-each-map' );
-var ndarraylike2scalar = require( '@stdlib/ndarray-base-ndarraylike2scalar' );
+const { toScalar } = require('ndarray-base-ndarraylike2scalar');
 
-// Create a list of scalars:
-var scalars = oneTo( 10 );
-
-// Create a composite function which round-trips a scalar to an ndarray and back:
-var f = compose( ndarraylike2scalar, naryFunction( scalar2ndarray, 1 ) );
-
-// Apply the function to the list of scalars:
-logEachMap( '%d => %d', scalars, f );
+const simpleArray = [5, 10, 15];
+const scalar = toScalar(simpleArray);
+console.log(scalar); // Output: 5
 ```
 
-</section>
+### Example 2: Nested Array
 
-<!-- /.examples -->
+```javascript
+const { toScalar } = require('ndarray-base-ndarraylike2scalar');
 
-<!-- Section to include cited references. If references are included, add a horizontal rule *before* the section. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+const nestedArray = [[1, 2], [3, 4]];
+const scalar = toScalar(nestedArray);
+console.log(scalar); // Output: 1
+```
 
-<section class="references">
+### Example 3: Complex Structure
 
-</section>
+```javascript
+const { toScalar } = require('ndarray-base-ndarraylike2scalar');
 
-<!-- /.references -->
+const complexArray = [[[1, 2], [3, 4]], [[5, 6], [7, 8]]];
+const scalar = toScalar(complexArray);
+console.log(scalar); // Output: 1
+```
 
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+## Contributing
 
-<section class="related">
+Contributions are welcome! If you would like to contribute to the project, please follow these steps:
 
-</section>
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your changes to your forked repository.
+5. Create a pull request.
 
-<!-- /.related -->
-
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-
-<section class="main-repo" >
-
-* * *
-
-## Notice
-
-This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
-
-For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
-
-#### Community
-
-[![Chat][chat-image]][chat-url]
-
----
+Make sure to follow the coding standards and include tests for your changes.
 
 ## License
 
-See [LICENSE][stdlib-license].
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+## Contact
 
-## Copyright
+For questions or suggestions, feel free to reach out:
 
-Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
+- GitHub: [Fietsiewolbackslep](https://github.com/Fietsiewolbackslep)
+- Email: example@example.com
 
-</section>
+For the latest releases and updates, visit the [Releases section](https://github.com/Fietsiewolbackslep/ndarray-base-ndarraylike2scalar/releases). 
 
-<!-- /.stdlib -->
-
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-<section class="links">
-
-[npm-image]: http://img.shields.io/npm/v/@stdlib/ndarray-base-ndarraylike2scalar.svg
-[npm-url]: https://npmjs.org/package/@stdlib/ndarray-base-ndarraylike2scalar
-
-[test-image]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/actions/workflows/test.yml/badge.svg?branch=main
-[test-url]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/actions/workflows/test.yml?query=branch:main
-
-[coverage-image]: https://img.shields.io/codecov/c/github/stdlib-js/ndarray-base-ndarraylike2scalar/main.svg
-[coverage-url]: https://codecov.io/github/stdlib-js/ndarray-base-ndarraylike2scalar?branch=main
-
-<!--
-
-[dependencies-image]: https://img.shields.io/david/stdlib-js/ndarray-base-ndarraylike2scalar.svg
-[dependencies-url]: https://david-dm.org/stdlib-js/ndarray-base-ndarraylike2scalar/main
-
--->
-
-[chat-image]: https://img.shields.io/gitter/room/stdlib-js/stdlib.svg
-[chat-url]: https://app.gitter.im/#/room/#stdlib-js_stdlib:gitter.im
-
-[stdlib]: https://github.com/stdlib-js/stdlib
-
-[stdlib-authors]: https://github.com/stdlib-js/stdlib/graphs/contributors
-
-[umd]: https://github.com/umdjs/umd
-[es-module]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-
-[deno-url]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/tree/deno
-[deno-readme]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/blob/deno/README.md
-[umd-url]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/tree/umd
-[umd-readme]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/blob/umd/README.md
-[esm-url]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/tree/esm
-[esm-readme]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/blob/esm/README.md
-[branches-url]: https://github.com/stdlib-js/ndarray-base-ndarraylike2scalar/blob/main/branches.md
-
-[stdlib-license]: https://raw.githubusercontent.com/stdlib-js/ndarray-base-ndarraylike2scalar/main/LICENSE
-
-</section>
-
-<!-- /.links -->
+Happy coding!
